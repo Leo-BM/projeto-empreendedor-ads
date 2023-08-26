@@ -1,9 +1,9 @@
 <script setup>
-
+import LoginPage from './Views/LoginPage.vue';
 </script>
 
 <template>
   <div class="bg-gray-800 h-screen text-white">
-  <h1>Boas vindas</h1>
+  <LoginPage />
   </div>
 </template>
