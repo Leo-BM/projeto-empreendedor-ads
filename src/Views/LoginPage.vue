@@ -1,11 +1,10 @@
 <template>
 <div class="bg-white p-8 rounded-lg shadow-md w-96">
         <h1 class="text-2xl font-bold mb-4">Login</h1>
-        <span class="text-black">{{ loginForm }}</span>
 
         <!-- Mensagem de erro geral -->
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4 hidden" id="generalError">
-            <span class="block sm:inline">Erro no login. Tente novamente.</span>
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4 invisible" :class="{'!visible': loginFailMessage.length != 1}" id="generalError">
+            <span class="block sm:inline">{{ loginFailMessage }}</span>
         </div>
 
         <!-- Campo de email -->
@@ -25,7 +24,7 @@
             </label>
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" v-model="loginForm.password" placeholder="******************">
             <!-- Mensagem de erro para senha -->
-            <p class="text-red-500 text-xs italic" :class="{'hidden': loginFail === false}" id="passwordError">Sua senha está incorreta.</p>
+            <p class="text-red-500 text-xs italic hidden" id="passwordError">Sua senha está incorreta.</p>
         </div>
 
         <div class="flex items-center justify-between">
@@ -39,7 +38,9 @@
 <script setup>
 import {ref} from "vue";
 
-const loginFail = ref(false);
+import axios from "axios";
+
+const loginFailMessage = ref(".");
 const processingLogin = ref(false);
 
 const loginForm = ref({
@@ -49,10 +50,20 @@ const loginForm = ref({
 
 function submitLogin(){
     processingLogin.value = true;
-    setTimeout(() => {
-        processingLogin.value = false;
-    }, 2000);
-
+    axios.post("http://127.0.0.1:3000/v1/login", loginForm.value,{
+        headers:{
+            "Authorization": '6wDt7ENG4NuwOftlxZWdipfMIGiCIlXsLbqXISICK7RxD0jrbG5eF8jeyng33J9j7utpUV8JotExKkeieNit8woeysdj2dEbXr6jUk1zgnR4cnXIUN4lySymGcIAtHtl'
+        }
+    }).then((response) => {
+        alert(`Boas vindas: ${response.data.dados.full_name}`)
+    }).catch((error) => {
+        loginFailMessage.value = error.response.data.mensagem;
+        setTimeout(() => {
+            loginFailMessage.value = ".";
+        }, 3000);
+    }).finally(() => {
+    processingLogin.value = false;
+    })
 }
 
 </script>
