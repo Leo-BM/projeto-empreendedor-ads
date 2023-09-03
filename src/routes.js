@@ -9,6 +9,8 @@ const routes = [
   { path: "/acesso", component: LoginPage, name: "loginPage" },
   { path: "/registro", component: RegistrationPage, name: "registrationPage" },
   { path: "/painel", component: DashboardView, name: "DashboardView" },
+  { path: "/agendar-exame", component: DashboardView, name: "AgendarExameView" },
+  { path: "/agendar-consulta", component: DashboardView, name: "AgendarConsultaView" },
 ];
 
 const router = createRouter({
