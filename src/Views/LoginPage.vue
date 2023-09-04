@@ -65,8 +65,8 @@
 
 <script setup>
 import { ref } from "vue";
-import axios from "axios";
 import { useRouter } from "vue-router";
+import api from "../Utils/api";
 
 const loginFailMessage = ref(".");
 const processingLogin = ref(false);
@@ -80,19 +80,13 @@ const loginForm = ref({
 
 function submitLogin() {
   processingLogin.value = true;
-  axios
-    .post("http://127.0.0.1:3000/v1/login", loginForm.value, {
-      headers: {
-        Authorization:
-          "6wDt7ENG4NuwOftlxZWdipfMIGiCIlXsLbqXISICK7RxD0jrbG5eF8jeyng33J9j7utpUV8JotExKkeieNit8woeysdj2dEbXr6jUk1zgnR4cnXIUN4lySymGcIAtHtl",
-      },
-    })
+  api
+    .post("/login", loginForm.value)
     .then((response) => {
       router.push({ name: "DashboardView" });
-      //   alert(`Boas vindas: ${response.data.dados.full_name}`);
     })
     .catch((error) => {
-      loginFailMessage.value = error.response.data.mensagem;
+      loginFailMessage.value = error;
       setTimeout(() => {
         loginFailMessage.value = ".";
       }, 3000);
