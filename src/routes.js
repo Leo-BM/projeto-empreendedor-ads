@@ -3,14 +3,15 @@ import LoginPage from "./Views/LoginPage.vue";
 import RegistrationPage from "./Views/Registration.vue";
 import HomeView from "./Views/Site/Home.vue";
 import DashboardView from "./Views/Admin/Dashboard.vue";
+import AgendarConsultaView from "./Views/Admin/AgendarConsulta.vue";
 
 const routes = [
   { path: "/", component: HomeView, name: "homePage" },
   { path: "/acesso", component: LoginPage, name: "loginPage" },
   { path: "/registro", component: RegistrationPage, name: "registrationPage" },
   { path: "/painel", component: DashboardView, name: "DashboardView" },
-  { path: "/agendar-exame", component: DashboardView, name: "AgendarExameView" },
-  { path: "/agendar-consulta", component: DashboardView, name: "AgendarConsultaView" },
+  { path: "/agendar-exame", component: DashboardView, name: "AgendarExame" },
+  { path: "/agendar-consulta", component: AgendarConsultaView, name: "AgendarConsulta" },
 ];
 
 const router = createRouter({
