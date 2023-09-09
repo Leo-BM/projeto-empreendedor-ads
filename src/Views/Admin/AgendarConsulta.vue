@@ -47,7 +47,7 @@
       </div>
       <div v-if="fase == 2" class="mx-4 flex flex-col space-y-4">
         <button @click="fase = 1" class="block self-start">Voltar</button>
-        <Calendar :mes="consulta" />
+        <Calendar :mes="consulta" :url="`/schedule/dates/6/${idSpecialty}/${idProfessional}`" />
         <ul class="flex flex-col space-y-2 !mb-8">
           <li
             class="btn-primary !px-3 !py-2 text-sm !bg-slate-400 !text-black"

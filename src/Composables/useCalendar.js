@@ -1,6 +1,6 @@
 // useCalendar.js
 
-import { ref, reactive, watch } from "vue";
+import { ref, watch } from "vue";
 import { startOfMonth, endOfMonth, eachDayOfInterval, format } from "date-fns";
 
 /**
@@ -12,11 +12,21 @@ export function useCalendar() {
   // Dias da semana em português
   const daysOfWeek = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
 
-    // Lista de nomes de meses em português
-    const monthNames = [
-        'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
-        'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'
-    ];
+  // Lista de nomes de meses em português
+  const monthNames = [
+    "janeiro",
+    "fevereiro",
+    "março",
+    "abril",
+    "maio",
+    "junho",
+    "julho",
+    "agosto",
+    "setembro",
+    "outubro",
+    "novembro",
+    "dezembro",
+  ];
 
   // Ref para o mês selecionado. Inicialmente, é o mês atual.
   const selectedMonth = ref(new Date().getMonth() + 1);
@@ -25,7 +35,7 @@ export function useCalendar() {
   const selectedYear = ref(new Date().getFullYear());
 
   // Array reativo para armazenar as semanas do mês selecionado.
-  const weeks = reactive([]);
+  const weeks = ref([]);
 
   // Assista às mudanças em selectedMonth e selectedYear
   watch([selectedMonth, selectedYear], () => {
@@ -40,7 +50,7 @@ export function useCalendar() {
    */
   function generateCalendar(month, year) {
     // Limpa o array de semanas antes de gerar um novo calendário
-    weeks.splice(0);
+    weeks.value.splice(0);
     const startDate = startOfMonth(new Date(year, month - 1));
     const endDate = endOfMonth(new Date(year, month - 1));
 
@@ -62,7 +72,15 @@ export function useCalendar() {
 
     while (days.length) {
       // Mapeie cada dia para mostrar apenas o número do dia, não a data completa
-      weeks.push(days.splice(0, 7).map((day) => day.getDate().toString()));
+
+      weeks.value.push(
+        days
+          .splice(0, 7)
+          .map((day) => ({
+            // Retorna um array onde em ordem: YYYY, MM, DD
+            label: day.getTime(),
+          }))
+      );
     }
   }
 
@@ -78,23 +96,23 @@ export function useCalendar() {
     generateCalendar(month, year);
   }
 
-    /**
-     * Traduz o mês.
-     * Se receber um número, retorna o nome do mês correspondente.
-     * Se receber uma string (nome do mês), retorna o número correspondente.
-     *
-     * @param {number|string} month - O mês para traduzir (número ou nome).
-     * @returns {string|number} - Retorna o nome ou número correspondente do mês.
-     */
-    function translateMonth(month) {
-        if (typeof month === 'number') {
-            return monthNames[month - 1];  // Os arrays são indexados a partir de 0
-        } else if (typeof month === 'string') {
-            month = month.trim().toLocaleLowerCase();
-            return monthNames.indexOf(month) + 1;  // Adicione 1 porque os meses começam de 1 (Janeiro)
-        }
-        return null;  // Caso o valor fornecido não seja reconhecido
+  /**
+   * Traduz o mês.
+   * Se receber um número, retorna o nome do mês correspondente.
+   * Se receber uma string (nome do mês), retorna o número correspondente.
+   *
+   * @param {number|string} month - O mês para traduzir (número ou nome).
+   * @returns {string|number} - Retorna o nome ou número correspondente do mês.
+   */
+  function translateMonth(month) {
+    if (typeof month === "number") {
+      return monthNames[month - 1]; // Os arrays são indexados a partir de 0
+    } else if (typeof month === "string") {
+      month = month.trim().toLocaleLowerCase();
+      return monthNames.indexOf(month) + 1; // Adicione 1 porque os meses começam de 1 (Janeiro)
     }
+    return null; // Caso o valor fornecido não seja reconhecido
+  }
 
   return {
     translateMonth,
