@@ -3,10 +3,10 @@
     <select v-if="options.length" @change="$emit('update:modelValue', this)">
       <option
         v-for="option in options"
-        :key="option.value"
-        :value="option.value"
+        :key="option.id"
+        :value="option.id"
       >
-        {{ option[indexLabel] }}
+        {{ option.label }}
       </option>
     </select>
     <div v-if="error">{{ error }}</div>
@@ -25,7 +25,12 @@ const error = ref(null);
 const fetchData = async () => {
   try {
     const response = await api.get(props.url);
-    options.value = response.data.dados;
+    let dados = response.data.dados.map((i) => ({
+      label: i[props.indexLabel],
+      id: i.id,
+    }));
+    console.log(dados);
+    options.value = [{label: "Selecione", id: null}, ...dados ];
   } catch (err) {
     console.log(err);
     error.value = "Erro ao buscar os dados";
