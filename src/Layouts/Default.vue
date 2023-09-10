@@ -5,7 +5,7 @@
       <nav>
         <ul>
           <li>
-            <a href="javascript:;">Início</a>
+            <RouterLink :to="{ name: 'DashboardPage' }">Início</RouterLink>
           </li>
           <li>
             <a href="javascript:;">Exames</a>

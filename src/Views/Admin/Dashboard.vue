@@ -1,6 +1,6 @@
 <template>
   <Default>
-    <div class="flex space-x-4 justify-center items-center flex-wrap h-screen">
+    <div class="mt-60 flex justify-center items-center flex-wrap">
       <RouterLink class="btn-primary !p-5" :to="{ name: 'AgendarConsulta' }"
         >Agendar consulta</RouterLink
       >
@@ -18,4 +18,8 @@
 import Default from "@/Layouts/Default.vue";
 </script>
 
-<style scoped></style>
+<style scoped>
+.btn-primary {
+  @apply mx-4 my-4;
+}
+</style>
