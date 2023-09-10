@@ -5,6 +5,7 @@ import HomePage from "./Views/Site/Home.vue";
 import DashboardPage from "./Views/Admin/Dashboard.vue";
 import AgendarConsultaView from "./Views/Admin/AgendarConsulta.vue";
 import AgendarExame from "./Views/Admin/AgendarExame.vue";
+import BuscarFarmacias from "./Views/Admin/BuscarFarmacias.vue";
 
 const routes = [
   { path: "/", component: HomePage, name: "homePage" },
@@ -12,6 +13,11 @@ const routes = [
   { path: "/registro", component: RegistrationPage, name: "registrationPage" },
   { path: "/painel", component: DashboardPage, name: "DashboardPage" },
   { path: "/agendar-exame", component: AgendarExame, name: "AgendarExamePage" },
+  {
+    path: "/buscar-farmacias",
+    component: BuscarFarmacias,
+    name: "BuscarFarmaciasPage",
+  },
   {
     path: "/agendar-consulta",
     component: AgendarConsultaView,

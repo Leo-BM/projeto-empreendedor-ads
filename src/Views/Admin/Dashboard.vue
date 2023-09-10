@@ -7,6 +7,9 @@
       <RouterLink class="btn-primary !p-5" :to="{ name: 'AgendarExamePage' }"
         >Agendar exame</RouterLink
       >
+      <RouterLink class="btn-primary !p-5" :to="{ name: 'BuscarFarmaciasPage' }"
+        >Buscar Farmacias</RouterLink
+      >
     </div>
   </Default>
 </template>
