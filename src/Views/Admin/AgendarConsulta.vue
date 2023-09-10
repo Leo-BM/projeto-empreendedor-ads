@@ -57,9 +57,12 @@
         </p>
         <ul class="flex flex-col space-y-2 !mb-8">
           <li
-            class="btn-primary !px-3 !py-2 text-sm !bg-slate-400 !text-black cursor-pointer"
-            @click="selectAppointment(horario)"
             v-for="horario in horarios"
+            class="btn-primary !px-3 !py-2 text-sm !bg-slate-400 !text-black cursor-pointer"
+            :class="{
+              '!bg-green-600 !text-white': horario.selected,
+            }"
+            @click="selectAppointment(horario)"
           >
             {{ horario.horario }}
           </li>
@@ -99,6 +102,9 @@ function appointments(data) {
 }
 
 function selectAppointment(horario) {
+  horarios.value.forEach((h) => (h.selected = false));
+  horario.selected = true;
+
   idSchedule.value = horario.id_agenda;
 }
 
