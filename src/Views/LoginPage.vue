@@ -47,7 +47,11 @@
       </p>
     </div>
     <div class="text-center">
-      <RouterLink class="text-black text-base" :to="{name: 'registrationPage'}">Cadastre-se aqui</RouterLink>
+      <RouterLink
+        class="text-black text-base"
+        :to="{ name: 'registrationPage' }"
+        >Cadastre-se aqui</RouterLink
+      >
     </div>
 
     <div class="flex items-center justify-end">
@@ -83,6 +87,7 @@ function submitLogin() {
   api
     .post("/login", loginForm.value)
     .then((response) => {
+      localStorage.setItem("usuario", JSON.stringify(response.data.dados));
       router.push({ name: "DashboardView" });
     })
     .catch((error) => {
