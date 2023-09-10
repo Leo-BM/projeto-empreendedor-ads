@@ -35,7 +35,7 @@
             Informe o mês desejado para consultar a disponibilidade
           </label>
         </div>
-        <select v-model="consulta">
+        <select>
           <option disabled value="">Selecione</option>
           <option value="9" selected>Setembro</option>
         </select>
@@ -47,15 +47,24 @@
       </div>
       <div v-if="fase == 2" class="mx-4 flex flex-col space-y-4">
         <button @click="fase = 1" class="block self-start">Voltar</button>
-        <Calendar :mes="consulta" :url="`/schedule/dates/6/${idSpecialty}/${idProfessional}`" />
+        <Calendar
+          @appointments="appointments"
+          :url="`/schedule/dates/6/${idSpecialty}/${idProfessional}`"
+        />
+        <p v-if="!horarios.length">
+          Toque na data acima para saber os horários disponivel para agendamento
+          de consulta
+        </p>
         <ul class="flex flex-col space-y-2 !mb-8">
           <li
-            class="btn-primary !px-3 !py-2 text-sm !bg-slate-400 !text-black"
+            class="btn-primary !px-3 !py-2 text-sm !bg-slate-400 !text-black cursor-pointer"
+            @click="selectAppointment(horario)"
             v-for="horario in horarios"
           >
-            {{ horario }}
+            {{ horario.horario }}
           </li>
         </ul>
+        {{ idSchedule }}
         <button class="btn-primary">Confirmar agendamento</button>
       </div>
     </div>
@@ -70,19 +79,22 @@ import Calendar from "../../Components/Calendar.vue";
 
 const idSpecialty = ref();
 const idProfessional = ref();
-
-watch(idSpecialty, () => {
-  console.log("Mudou");
-  idProfessional.value = null;
-})
-
-const consulta = ref({
-  mes: 0,
-});
+const idSchedule = ref();
 
 const fase = ref(1);
+const horarios = ref([]);
 
-const horarios = ref(["10:00 AM", "11:00 AM", "12:00 AM", "14:00 PM"]);
+watch(idSpecialty, () => {
+  idProfessional.value = null;
+});
+
+function appointments(data) {
+  horarios.value = data;
+}
+
+function selectAppointment(horario) {
+  idSchedule.value = horario.id_agenda;
+}
 </script>
 
 <style scoped></style>
