@@ -32,8 +32,9 @@
 </template>
 
 <script setup>
-import { useCalendar } from "../Composables/useCalendar"; // Importando o composable que gerencia o calendário
 import { defineProps, defineEmits, onMounted, ref } from "vue";
+import Swal from "sweetalert2";
+import { useCalendar } from "../Composables/useCalendar"; // Importando o composable que gerencia o calendário
 import { format } from "date-fns";
 import api from "../Utils/api";
 
@@ -65,6 +66,13 @@ const fetchData = async () => {
   try {
     const response = await api.get(props.url);
     respData.value = response.data;
+
+    if (!respData.value.dados) {
+      Swal.fire({
+        icon: "warning",
+        title: respData.value.mensagem,
+      });
+    }
 
     // Usa o Set para filtrar datas unicas, usa Spread para usar o map
     const datas = [...new Set(respData.value.dados.map((i) => i.data))].map(
