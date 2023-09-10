@@ -116,7 +116,7 @@ function submitRegistration() {
       },
     })
     .then((response) => {
-      router.push({ name: "DashboardView" });
+      router.push({ name: "DashboardPage" });
     })
     .catch((error) => {
       registrationFailMessage.value = error.response.data.mensagem;

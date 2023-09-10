@@ -88,7 +88,7 @@ function submitLogin() {
     .post("/login", loginForm.value)
     .then((response) => {
       localStorage.setItem("usuario", JSON.stringify(response.data.dados));
-      router.push({ name: "DashboardView" });
+      router.push({ name: "DashboardPage" });
     })
     .catch((error) => {
       loginFailMessage.value = error;

@@ -64,8 +64,9 @@
             {{ horario.horario }}
           </li>
         </ul>
-        {{ idSchedule }}
-        <button class="btn-primary">Confirmar agendamento</button>
+        <button class="btn-primary" @click="agendarConsulta">
+          Confirmar agendamento
+        </button>
       </div>
     </div>
   </Default>
@@ -73,9 +74,14 @@
 
 <script setup>
 import { ref, watch } from "vue";
+import { useRouter } from "vue-router";
+import Swal from "sweetalert2";
 import Default from "@/Layouts/Default.vue";
 import Select2 from "../../Components/Select2.vue";
 import Calendar from "../../Components/Calendar.vue";
+import api from "@/Utils/api";
+
+const router = useRouter();
 
 const idSpecialty = ref();
 const idProfessional = ref();
@@ -94,6 +100,25 @@ function appointments(data) {
 
 function selectAppointment(horario) {
   idSchedule.value = horario.id_agenda;
+}
+
+async function agendarConsulta() {
+  const user = JSON.parse(localStorage.getItem("usuario"));
+
+  const agendar = await api.post(
+    `/schedule/appointment/${idSchedule.value}/${user.id}`
+  );
+
+  Swal.fire({
+    toast: true,
+    timer: 3000,
+    timerProgressBar: true,
+    position: "top-right",
+    icon: "success",
+    text: agendar.data.mensagem,
+    showConfirmButton: false,
+  });
+  router.push({ name: "DashboardPage" });
 }
 </script>
 
