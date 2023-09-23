@@ -37,7 +37,7 @@
         </div>
         <select>
           <option disabled value="">Selecione</option>
-          <option value="9" selected>Setembro</option>
+          <option value="10" selected>Outubro</option>
         </select>
       </div>
       <div v-if="fase == 1 && idSpecialty">
@@ -49,6 +49,7 @@
         <button @click="fase = 1" class="block self-start">Voltar</button>
         <Calendar
           @appointments="appointments"
+          month="10"
           :url="`/schedule/dates/6/${idSpecialty}/${idProfessional}`"
         />
         <p v-if="!horarios.length">

@@ -40,6 +40,10 @@ import api from "../Utils/api";
 
 const props = defineProps({
   url: String,
+  month: {
+    type: String,
+    default: new Date().getMonth() + 1,
+  },
 });
 
 const emits = defineEmits(["appointments", "selectDay"]);
@@ -56,7 +60,7 @@ const {
 
 const respData = ref();
 
-selectedMonth.value = new Date().getMonth() + 1;
+selectedMonth.value = props.month;
 selectedYear.value = new Date().getFullYear();
 
 // Inicializando o calendário com a data atual assim que o componente é criado
