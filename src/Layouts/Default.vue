@@ -14,13 +14,13 @@
             <RouterLink :to="{ name: 'DashboardPage' }">Início</RouterLink>
           </li>
           <li>
-            <a href="javascript:;">Exames</a>
+            <RouterLink :to="{ name: 'AgendarExamePage' }">Exames</RouterLink>
           </li>
           <li>
-            <a href="javascript:;">Consultas</a>
+            <RouterLink :to="{ name: 'AgendarConsulta' }">Consultas</RouterLink>
           </li>
           <li>
-            <a href="javascript:;">Vacinas</a>
+            <RouterLink :to="{ name: 'AgendarVacina' }">Vacinas</RouterLink>
           </li>
           <li>
             <a href="javascript:;">Aval.</a>
