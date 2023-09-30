@@ -1,9 +1,9 @@
 <template>
   <Default>
-    <h1 class="text-center">
+    <h1 class="text-center text-slate-600 py-8">
       Olá, bem vindo às suas <span class="font-bold">consultas agendadas</span>
     </h1>
-    <div>
+    <div class="px-8">
       <ul class="px-3 py-2 space-y-4">
         <li
           v-for="agenda in agendas"
@@ -25,7 +25,10 @@
       </ul>
     </div>
     <SimpleModal v-model="iframeConsulta">
-      <div class="bg-red-600 w-full">
+      <div class="w-full">
+        <button class="btn-primary mb-2" @click="finishApointment">
+          Finalizar Consulta
+        </button>
         <iframe
           :src="`https://navve.studio/alpha/index.html?room=ConsultaRemota${idAgenda}&label=${user.email}&remote&screensharehide&effects&sl&hidetranslate&turn=navve;M28shauetSdf;turn:turn.sub.navve.studio:443&cbr&vd`"
           allow="autoplay;camera;microphone;fullscreen;picture-in-picture;display-capture;midi;geolocation;"
@@ -40,15 +43,16 @@
 
 <script setup>
 import { onMounted, onBeforeUnmount, ref } from "vue";
+import { useRouter } from "vue-router";
 import Default from "@/Layouts/Default.vue";
 import SimpleModal from "../../Components/SimpleModal.vue";
 import api from "@/Utils/api";
 import { format } from "date-fns";
 
+const router = useRouter();
+
 const agendas = ref([]);
-
 const iframeConsulta = ref(false);
-
 const idAgenda = ref(0);
 
 const user = ref(JSON.parse(localStorage.getItem("usuario")));
@@ -63,6 +67,12 @@ onMounted(async () => {
 onBeforeUnmount(() => {
   window.removeEventListener("hangupCall", callEnded);
 });
+
+function finishApointment() {
+  iframeConsulta.value = false;
+  // Ajax para colocar a consulta como finalizada
+  router.push({ name: "DashboardPage" });
+}
 
 function acessarConsulta(idAgenda) {
   iframeConsulta.value = true;
