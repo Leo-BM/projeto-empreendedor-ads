@@ -1,16 +1,18 @@
 <template>
   <Default>
-    <h1>Buscar Farmacias</h1>
-    <div>
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="doctor">
-        Aqui você pode consultar o preço de medicamentos em farmácias próximas e
-        depois navegar até elas.
-      </label>
-      <Select2Obj
-        class="w-full"
-        url="/pharmacies/medicines"
-        v-model="pharmacies"
-      />
+    <div class="text-center flex flex-col space-y-8 px-8">
+      <h1 class="text-slate-600 font-bold text-xl mt-8">Buscar Farmacias</h1>
+      <div>
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="doctor">
+          Aqui você pode consultar o preço de medicamentos em farmácias próximas
+          e depois navegar até elas.
+        </label>
+        <Select2Obj
+          class="rounded-md border-slate-600"
+          url="/pharmacies/medicines"
+          v-model="pharmacies"
+        />
+      </div>
     </div>
   </Default>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <select v-if="options.length" @change="updateValue">
+    <select v-if="options.length" @change="updateValue" v-bind="$attrs">
       <option
         v-for="option in options"
         :key="option.id"
