@@ -2,8 +2,7 @@
   <div class="h-screen grid place-items-center">
     <div class="space-y-10">
       <div class="text-center">
-        <h1 class="text-5xl underline font-bold mb-4 text-slate-600">SISC</h1>
-        <h2 class="text-slate-600">Sistema integrado de saúde Caxias do Sul</h2>
+        <MainLogo />
       </div>
       <div class="text-center space-x-5">
         <RouterLink class="btn-primary acessos" :to="{ name: 'loginPage' }"
@@ -19,7 +18,9 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import MainLogo from "../../Components/MainLogo.vue";
+</script>
 
 <style scoped>
 .acessos {
