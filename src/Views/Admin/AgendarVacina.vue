@@ -1,13 +1,13 @@
 <template>
   <Default>
     <div class="text-center flex flex-col space-y-8">
-      <h1>Agendar Consulta</h1>
+      <h1 class="text-slate-600 font-bold text-xl mt-8">Agendar Vacina</h1>
       <div class="" v-if="fase == 1">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="doctor">
           Selecione a vacina
         </label>
         <Select2
-          class="w-full"
+          class="rounded-md border-slate-600"
           url="/schedule/specialtys/8"
           v-model="idSpecialty"
           index-label="nome_vacina"
@@ -20,7 +20,7 @@
         </label>
         <Select2
           v-if="idSpecialty"
-          class="w-full"
+          class="rounded-md border-slate-600"
           :url="`/schedule/professionals/8/${idSpecialty}/`"
           v-model="idProfessional"
           index-id="id_medico"
@@ -36,7 +36,7 @@
             Informe o mês desejado para consultar a disponibilidade
           </label>
         </div>
-        <select>
+        <select class="rounded-md border-slate-600">
           <option disabled value="">Selecione</option>
           <option value="10" selected>Outubro</option>
         </select>
@@ -46,8 +46,7 @@
           Consultar disponibilidade de agenda
         </button>
       </div>
-      <div v-if="fase == 2" class="mx-4 flex flex-col space-y-4">
-        <button @click="fase = 1" class="block self-start">Voltar</button>
+      <div v-if="fase == 2" class="mx-4 flex flex-col space-y-4 px-8">
         <Calendar
           @appointments="appointments"
           month="10"
