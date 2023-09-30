@@ -1,6 +1,6 @@
 <template>
   <div class="h-screen">
-    <MainLogo :show-subtitle="false" class="m-2">
+    <MainLogo :show-subtitle="false" :logoLink="'DashboardPage'" class="m-2">
       <template #link>
         <RouterLink :to="{ name: 'homePage' }" class="mr-4 btn-primary"
           >Sair</RouterLink
@@ -36,7 +36,12 @@
 </template>
 
 <script setup>
+import { defineProps } from "vue";
 import MainLogo from "../Components/MainLogo.vue";
+
+const props = defineProps({
+  logoLink: String,
+});
 </script>
 
 <style scoped>

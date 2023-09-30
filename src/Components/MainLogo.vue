@@ -5,7 +5,7 @@
     }"
   >
     <RouterLink
-      :to="{ name: 'homePage' }"
+      :to="{ name: logoLink }"
       class="text-5xl underline font-bold text-slate-600"
       v-bind="$attrs"
       >SISC</RouterLink
@@ -24,6 +24,10 @@ const props = defineProps({
   showSubtitle: {
     type: Boolean,
     default: true,
+  },
+  logoLink: {
+    type: String,
+    default: "homePage",
   },
 });
 </script>
