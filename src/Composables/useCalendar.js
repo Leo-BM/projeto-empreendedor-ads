@@ -74,12 +74,10 @@ export function useCalendar() {
       // Mapeie cada dia para mostrar apenas o número do dia, não a data completa
 
       weeks.value.push(
-        days
-          .splice(0, 7)
-          .map((day) => ({
-            // Retorna um array onde em ordem: YYYY, MM, DD
-            label: day.getTime(),
-          }))
+        days.splice(0, 7).map((day) => ({
+          // Retorna um array onde em ordem: YYYY, MM, DD
+          label: day.getTime(),
+        }))
       );
     }
   }
@@ -105,6 +103,7 @@ export function useCalendar() {
    * @returns {string|number} - Retorna o nome ou número correspondente do mês.
    */
   function translateMonth(month) {
+    month = Number(month);
     if (typeof month === "number") {
       return monthNames[month - 1]; // Os arrays são indexados a partir de 0
     } else if (typeof month === "string") {

@@ -1,6 +1,11 @@
 <template>
   <div>
-    <select v-if="options.length" @change="updateValue">
+    <select
+      v-if="options.length"
+      @change="updateValue"
+      v-bind="$attrs"
+      class="text-slate-600"
+    >
       <option
         v-for="option in options"
         :key="option.id"
@@ -55,7 +60,3 @@ function updateValue($event) {
 
 onMounted(fetchData);
 </script>
-
-<style scoped>
-/* Seu CSS aqui */
-</style>

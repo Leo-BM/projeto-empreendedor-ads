@@ -1,8 +1,8 @@
 <template>
   <!-- Container principal do componente com alguns espaçamentos e centralização -->
-  <div class="flex flex-col items-center p-8">
+  <div class="flex flex-col items-center pb-8 pt-0">
     <!-- Renderiza o mês e ano selecionados -->
-    <div class="text-xl mb-4">
+    <div class="text-xl mb-4 text-slate-600 font-bold">
       <span class="first-letter:uppercase inline-block">{{
         `${translateMonth(selectedMonth)}`
       }}</span
@@ -23,7 +23,10 @@
         v-for="day in week"
         :key="day"
         class="w-full border border-slate-700 cursor-not-allowed"
-        :class="{ 'bg-red-400 !border-red-400 !cursor-pointer': day.available }"
+        :class="{
+          'bg-slate-600 !border-slate-600 text-white !cursor-pointer':
+            day.available,
+        }"
         @click="listAppointments(day)"
         >{{ new Date(day.label).getDate() }}</span
       >
