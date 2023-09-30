@@ -4,6 +4,9 @@
       <RouterLink class="btn-primary !p-5" :to="{ name: 'AgendarConsulta' }"
         >Agendar consulta</RouterLink
       >
+      <RouterLink class="btn-primary !p-5" :to="{ name: 'AgendarVacina' }"
+        >Agendar vacina</RouterLink
+      >
       <RouterLink class="btn-primary !p-5" :to="{ name: 'ConsultasAgendadas' }"
         >Consultas Agendadas</RouterLink
       >

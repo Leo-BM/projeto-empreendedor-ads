@@ -4,6 +4,7 @@ import RegistrationPage from "./Views/Registration.vue";
 import HomePage from "./Views/Site/Home.vue";
 import DashboardPage from "./Views/Admin/Dashboard.vue";
 import AgendarConsultaView from "./Views/Admin/AgendarConsulta.vue";
+import AgendarVacinaView from "./Views/Admin/AgendarVacina.vue";
 import ConsultasAgendadasView from "./Views/Admin/ConsultasAgendadas.vue";
 import AgendarExame from "./Views/Admin/AgendarExame.vue";
 import BuscarFarmacias from "./Views/Admin/BuscarFarmacias.vue";
@@ -23,6 +24,11 @@ const routes = [
     path: "/agendar-consulta",
     component: AgendarConsultaView,
     name: "AgendarConsulta",
+  },
+  {
+    path: "/agendar-vacina",
+    component: AgendarVacinaView,
+    name: "AgendarVacina",
   },
   {
     path: "/consultas-agendadas",
