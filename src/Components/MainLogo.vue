@@ -1,15 +1,16 @@
 <template>
-  <div>
+  <div
+    :class="{
+      'flex justify-between items-center': $slots.link,
+    }"
+  >
     <RouterLink
       :to="{ name: 'homePage' }"
       class="text-5xl underline font-bold text-slate-600"
       v-bind="$attrs"
       >SISC</RouterLink
     >
-    <slot
-      name="link"
-      :class="{ 'flex flex-row justify-between': $slots.link }"
-    ></slot>
+    <slot name="link"></slot>
     <h2 v-if="showSubtitle" class="text-slate-600 mt-4 block">
       Sistema integrado de saúde Caxias do Sul
     </h2>
