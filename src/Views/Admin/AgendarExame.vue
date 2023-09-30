@@ -1,13 +1,13 @@
 <template>
   <Default>
     <div class="text-center flex flex-col space-y-8">
-      <h1>Agendar Exame</h1>
+      <h1 class="text-slate-600 font-bold text-xl mt-8">Agendar Exame</h1>
       <div class="" v-if="fase == 1">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="doctor">
           Informe o exame que deseja agendar
         </label>
         <Select2
-          class="w-full"
+          class="rounded-md border-slate-600"
           url="/schedule/specialtys/7"
           v-model="idSpecialty"
           index-label="desc_procedimento"
@@ -23,9 +23,9 @@
             Informe o mês desejado para consultar a disponibilidade
           </label>
         </div>
-        <select>
+        <select class="rounded-md border-slate-600">
           <option disabled value="">Selecione</option>
-          <option value="9" selected>Setembro</option>
+          <option value="10" selected>Outubro</option>
         </select>
       </div>
       <div v-if="fase == 1 && idSpecialty">
@@ -33,10 +33,10 @@
           Consultar disponibilidade de agenda
         </button>
       </div>
-      <div v-if="fase == 2" class="mx-4 flex flex-col space-y-4">
-        <button @click="fase = 1" class="block self-start">Voltar</button>
+      <div v-if="fase == 2" class="mx-4 flex flex-col space-y-4 px-8">
         <Calendar
           @appointments="appointments"
+          month="10"
           :url="`/schedule/dates/7/${idSpecialty}/2`"
         />
         <p v-if="!horarios.length">
@@ -46,9 +46,9 @@
         <ul class="flex flex-col space-y-2 !mb-8">
           <li
             v-for="horario in horarios"
-            class="btn-primary !px-3 !py-2 text-sm bg-slate-400 text-white cursor-pointer"
+            class="btn-primary !px-3 !py-2 text-sm !bg-slate-400 !text-black cursor-pointer"
             :class="{
-              '!bg-green-600 ': horario.selected,
+              '!bg-green-600 !text-white': horario.selected,
             }"
             @click="selectAppointment(horario)"
           >
@@ -76,7 +76,6 @@ const router = useRouter();
 
 const idSpecialty = ref();
 const idSchedule = ref();
-
 const fase = ref(1);
 const horarios = ref([]);
 
