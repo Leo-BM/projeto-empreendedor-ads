@@ -1,6 +1,11 @@
 <template>
   <div class="h-screen grid place-items-center">
-    <div class="bg-white p-8 rounded-lg shadow-md w-96 mx-auto">
+    <div class="bg-white p-8 rounded-lg shadow-md w-96 mx-auto relative">
+      <RouterLink
+        class="btn-primary !p-2 absolute top-3 right-3"
+        :to="{ name: 'homePage' }"
+        >Home</RouterLink
+      >
       <div class="text-center">
         <MainLogo />
       </div>
