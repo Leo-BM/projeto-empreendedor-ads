@@ -1,7 +1,13 @@
 <template>
-  <div>
-    <h1 class="text-3xl">SISC</h1>
-    <header class="mb-4">
+  <div class="h-screen">
+    <MainLogo :show-subtitle="false" class="m-2">
+      <template #link>
+        <RouterLink :to="{ name: 'homePage' }" class="mr-4 btn-primary"
+          >Sair</RouterLink
+        >
+      </template>
+    </MainLogo>
+    <header class="mt-4">
       <nav>
         <ul>
           <li>
@@ -29,7 +35,9 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import MainLogo from "../Components/MainLogo.vue";
+</script>
 
 <style scoped>
 ul {
@@ -45,10 +53,10 @@ ul li:not(:first-child) a::after {
   display: block;
   content: "";
   height: 100%;
-  border-right: 2px solid red;
+  border-right: 2px solid rgb(71 85 105);
 }
 
 ul li a {
-  @apply block relative;
+  @apply block relative text-slate-600;
 }
 </style>
