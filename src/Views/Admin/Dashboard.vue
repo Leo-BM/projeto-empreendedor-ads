@@ -23,6 +23,9 @@
       <RouterLink class="btn-primary !p-4" :to="{ name: 'BuscarFarmaciasPage' }"
         >Buscar Farmacias</RouterLink
       >
+      <RouterLink class="btn-primary !p-4" :to="{ name: 'BuscarHospitaisPage' }"
+        >Buscar Hospitais</RouterLink
+      >
     </fieldset>
   </Default>
 </template>

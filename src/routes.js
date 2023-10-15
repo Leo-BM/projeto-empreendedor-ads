@@ -8,6 +8,7 @@ import AgendarVacinaView from "./Views/Admin/AgendarVacina.vue";
 import ConsultasAgendadasView from "./Views/Admin/ConsultasAgendadas.vue";
 import AgendarExame from "./Views/Admin/AgendarExame.vue";
 import BuscarFarmacias from "./Views/Admin/BuscarFarmacias.vue";
+import BuscarHospitais from "./Views/Admin/BuscarHospitais.vue";
 
 const routes = [
   { path: "/", component: HomePage, name: "homePage" },
@@ -15,6 +16,11 @@ const routes = [
   { path: "/registro", component: RegistrationPage, name: "registrationPage" },
   { path: "/painel", component: DashboardPage, name: "DashboardPage" },
   { path: "/agendar-exame", component: AgendarExame, name: "AgendarExamePage" },
+  {
+    path: "/buscar-hospitais",
+    component: BuscarHospitais,
+    name: "BuscarHospitaisPage",
+  },
   {
     path: "/buscar-farmacias",
     component: BuscarFarmacias,

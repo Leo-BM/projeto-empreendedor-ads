@@ -2,13 +2,13 @@
   <div>
     <select v-if="options.length" @change="updateValue" v-bind="$attrs">
       <option
-        v-for="option in options"
+        v-for="(option, idx) in options"
         :key="option.id"
         :selected="option.selected == true"
         :disabled="option.disabled == true"
-        :value="option.label"
+        :value="idx"
       >
-        {{ option.label }}
+        {{ option[indexLabel] }}
       </option>
     </select>
     <div v-if="error">{{ error }}</div>
@@ -22,6 +22,10 @@ import api from "../Utils/api";
 const props = defineProps({
   url: String,
   indexLabel: String,
+  groupData: {
+    type: String,
+    default: "pharmacies",
+  },
   indexId: {
     type: String,
     default: "id",
@@ -37,13 +41,18 @@ const fetchData = async () => {
   try {
     const response = await api.get(props.url);
     resData.value = response.data.dados;
-    let dados = Object.keys(resData.value).map((i) => ({
-      label: i,
-      pharmacies: resData.value[i],
-    }));
+    // let dados = resData.value.map((i) => ({
+    //   label: i.nome_hospital,
+    //   pharmacies: resData.value[i],
+    // }));
     options.value = [
-      { label: "Selecione", disabled: true, selected: true, id: null },
-      ...dados,
+      {
+        [props.indexLabel]: "Selecione",
+        disabled: true,
+        selected: true,
+        id: null,
+      },
+      ...resData.value,
     ];
   } catch (err) {
     console.log(err);
@@ -52,7 +61,7 @@ const fetchData = async () => {
 };
 
 function updateValue($event) {
-  emits("update:modelValue", resData.value[$event.target.value]);
+  emits("update:modelValue", resData.value[$event.target.value - 1]);
 }
 
 onMounted(fetchData);
