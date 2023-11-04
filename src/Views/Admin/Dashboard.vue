@@ -26,6 +26,11 @@
       <RouterLink class="btn-primary !p-4" :to="{ name: 'BuscarHospitaisPage' }"
         >Buscar Hospitais</RouterLink
       >
+      <RouterLink
+        class="btn-primary !p-4"
+        :to="{ name: 'CadastrarAvaliacaoFisica' }"
+        >Cadastrar Avaliações Físicas</RouterLink
+      >
     </fieldset>
   </Default>
 </template>
