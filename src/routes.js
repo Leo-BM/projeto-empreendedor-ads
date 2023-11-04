@@ -10,6 +10,7 @@ import AgendarExame from "./Views/Admin/AgendarExame.vue";
 import BuscarFarmacias from "./Views/Admin/BuscarFarmacias.vue";
 import BuscarHospitais from "./Views/Admin/BuscarHospitais.vue";
 import CadastrarAvaliacaoFisicaView from "./Views/Admin/CadastrarAvaliacaoFisica.vue";
+import MinhasAvaliacoesFisicasView from "./Views/Admin/MinhasAvaliacoesFisicas.vue";
 
 const routes = [
   { path: "/", component: HomePage, name: "homePage" },
@@ -46,6 +47,11 @@ const routes = [
     path: "/cadastrar-avaliacoes-fisicas",
     component: CadastrarAvaliacaoFisicaView,
     name: "CadastrarAvaliacaoFisica",
+  },
+  {
+    path: "/minhas-avaliacoes-fisicas",
+    component: MinhasAvaliacoesFisicasView,
+    name: "MinhasAvaliacoesFisicas",
   },
 ];
 

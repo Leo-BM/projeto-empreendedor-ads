@@ -31,6 +31,11 @@
         :to="{ name: 'CadastrarAvaliacaoFisica' }"
         >Cadastrar Avaliações Físicas</RouterLink
       >
+      <RouterLink
+        class="btn-primary !p-4"
+        :to="{ name: 'MinhasAvaliacoesFisicas' }"
+        >Minhas Avaliações Físicas</RouterLink
+      >
     </fieldset>
   </Default>
 </template>
