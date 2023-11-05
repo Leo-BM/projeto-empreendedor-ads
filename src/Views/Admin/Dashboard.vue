@@ -36,12 +36,14 @@
         :to="{ name: 'MinhasAvaliacoesFisicas' }"
         >Minhas Avaliações Físicas</RouterLink
       >
+      <DicasSaude class="btn-primary !p-4"> </DicasSaude>
     </fieldset>
   </Default>
 </template>
 
 <script setup>
 import Default from "@/Layouts/Default.vue";
+import DicasSaude from "../../Components/DicasSaude.vue";
 </script>
 
 <style scoped>
