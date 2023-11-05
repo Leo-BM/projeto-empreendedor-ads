@@ -7,11 +7,8 @@
     <div class="absolute inset-0 bg-black opacity-50" @click="closeModal"></div>
 
     <div
-      class="relative p-4 w-screen h-screen bg-white rounded-lg overflow-hidden shadow-xl transform transition-all z-20"
+      class="relative w-screen h-screen bg-white rounded-lg overflow-hidden shadow-xl transform transition-all z-20"
     >
-      <button @click="closeModal" class="absolute top-0 right-0 m-4">
-        <span class="text-gray-700 hidden">&times;</span>
-      </button>
       <slot></slot>
     </div>
   </div>

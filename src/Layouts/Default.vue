@@ -32,12 +32,14 @@
       </nav>
     </header>
     <slot></slot>
+    <FloatingButton />
   </div>
 </template>
 
 <script setup>
 import { defineProps } from "vue";
 import MainLogo from "../Components/MainLogo.vue";
+import FloatingButton from "../Components/FloatingButton.vue";
 
 const props = defineProps({
   logoLink: String,
